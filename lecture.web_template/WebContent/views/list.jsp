@@ -14,7 +14,7 @@
 <link href="${ctx}/views/resources/css/style.css" rel="stylesheet">
 </head>
 
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>	<!-- 로그인 | 회원가입 -->
 
 <body>
    <div class="container-fluid">
@@ -36,8 +36,10 @@
                      <th>강좌ID</th>
                      <th>강좌명</th>
                      <th>강사</th>
+                     <c:if test="${isAdmin }">	<!-- isAdmin이면 UPDATE,DELETE가 보임 -->
                      <th>UPDATE</th>
                      <th>DELETE</th>
+                     </c:if>
                   </tr>
                </thead>
                <tbody>
@@ -52,24 +54,22 @@
                            <tr>
                                        <td>${status.count }</td>
                                      <td>${lecture.id }</td>
-                                       <td><a href="detail.html">${lecture.lectureName }</a></td>
+                                       <td><a href="detail.do?id=${lecture.id }">${lecture.lectureName }</a></td>
                                      <td>${lecture.instructor}</td>
+                                     <c:if test="${isAdmin }">
                                      <td><a class="btn btn-xs btn-warning" href="modify.html">UPDATE</a></td>
                                      <td><a class="btn btn-xs btn-danger" href="#">DELETE</a></td>
+                                     </c:if>
                                    </tr>
                         
                         </c:forEach>
-                        
-                        
-                     </c:otherwise>
-                     
-                     
+                     </c:otherwise>                     
                   </c:choose>
-               
-
                </tbody>
             </table>
+            <c:if test="${isAdmin }">
             <a class="btn btn-sm btn-success" href="register.do">강좌등록</a>
+            </c:if>
          </div>
       </div>
    </div>

@@ -29,15 +29,16 @@ public class ListServlet extends HttpServlet {
 		
 		// 서비스 호출
 		LectureService service = new LectureServiceLogic();
-		List<Lecture> lectures = service.findAll();
+		List<Lecture> lectures = service.findAll(); // findAll()로 강좌의 모든 정보를 가져온다
 		// service의 findAll을 호출하면 store의 readAll이 호출되고 거기서 저장소의 값을 리턴한다.
 		
 		// 결과값 셋팅
-		request.setAttribute("lectures", lectures);
+		request.setAttribute("lectures", lectures); // request에 'lectures'라는 이름으로 강좌를 setAttribute로 저장한다.
 		
 		// 화면 전환
 		// 결과 위임(ListServlet->list.jsp)
 		request.getRequestDispatcher("/views/list.jsp").forward(request, response);
+		// dispatcher로 list.jsp에 보냄
 		
 		
 		
